@@ -50,26 +50,35 @@ const Form = ({ onPriceCount }) => {
     const [ netPrice, setNetPrice ] = useState(0);
     const [ tip, setTip ] = useState(5);
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        onPriceCount(calculatePrice(netPrice, tip));
+    };
+
     return (
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={handleSubmit}>
             <StyledFormElement>
-                <StyledLabel>Net total</StyledLabel>
-                <StyledInput type="number" value={netPrice} onChange={e => setNetPrice(parseFloat(e.target.value))} />
+                <StyledLabel htmlFor="netAmount">Net total</StyledLabel>
+                <StyledInput type="number" name="netAmount" id="netAmount" value={netPrice} onChange={e => setNetPrice(parseFloat(e.target.value))} />
             </StyledFormElement>
+
             <StyledFormElement>
                 <StyledLabel htmlFor="tipAmount">Tip amount</StyledLabel>
-                <StyledSelect name="tipAmount" onChange={e => setTip(parseFloat(e.target.value))}>
+                <StyledSelect name="tipAmount" id="tipAmount" onChange={e => setTip(parseFloat(e.target.value))}>
                     <option value="5">5%</option>
                     <option value="10">10%</option>
                     <option value="15">15%</option>
                     <option value="20">20%</option>
                 </StyledSelect>
             </StyledFormElement>
+
             <StyledInfoWrapper>
                 <StyledInfo>VAT value is {VAT}%</StyledInfo>
                 <StyledInfo>All prices in {CURRENCY}</StyledInfo>
             </StyledInfoWrapper>
-            <Button onClick={() => onPriceCount(calculatePrice(netPrice, tip))}>Get final price</Button>
+
+            <Button type="submit">Get final price</Button>
         </form>
     )
 };

@@ -18,10 +18,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    return <>
-        <GlobalStyle />
-        <TipsCalculator />
-    </>
+    return (
+        <React.Fragment>
+            <GlobalStyle />
+            <TipsCalculator />
+        </React.Fragment>
+    );
 }
 
 export default App;

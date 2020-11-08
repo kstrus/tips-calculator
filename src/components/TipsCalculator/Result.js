@@ -11,10 +11,10 @@ const StyledResult = styled.div`
 
 const Result = ({ amount, onStartAgain }) => {
     return (
-        <>
+        <React.Fragment>
             <StyledResult>{amount.toFixed(2)} {CURRENCY}</StyledResult>
             <Button onClick={onStartAgain}>Start again</Button>
-        </>
+        </React.Fragment>
     );
 };
 
